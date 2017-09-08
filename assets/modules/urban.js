@@ -1,14 +1,28 @@
-const urban = require('urban')
+const urban = require('urban'),
+			cheerio =require('cheerio'),
+			request = require('request')
 
-
-const urbanFunc = (bot,message,phrase) => {
-  // console.log(phrase)
+const urbanFunc = (phrase,cb) => {
   let r = urban(phrase)
   r.first((json) => {
 		if (typeof json != "undefined") {
-			message.channel.sendMessage(json.permalink)
+			request(json.permalink,(err, resp, html) => {
+				if (!err) {
+					let $ = cheerio.load(html)
+					let _urbanMeaning = {
+						title: $('#content .def-header').eq(0).text().replace(/(\r\n|\n|\r)/gm,""),
+						content: $('#content .meaning').eq(0).text().replace(/(\r\n|\n|\r)/gm,""),
+						author: $('#content .contributor').eq(0).text(),
+						url: json.permalink
+					}
+					cb(null,_urbanMeaning)
+					return
+				}
+			})
+			return
 		} else {
-			message.channel.sendMessage("Not found")
+			cb({message: "Not found"})
+			return
 		}
   })
 }

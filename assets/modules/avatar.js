@@ -7,7 +7,7 @@ const avatarFunc = (bot,message,userName,cb) => {
 			if (_userName != null && _userName == userName) {
 				let avatarId = user.avatar || null
 				if (avatarId != null) {
-					let avatarUrl = "https://cdn.discordapp.com/avatars/"+user.id+"/"+avatarId+".jpg?size=1024"
+					let avatarUrl = "https://cdn.discordapp.com/avatars/"+user.id+"/"+avatarId+".jpg"
 					cb(avatarUrl)
 					return
 				} else {
@@ -16,7 +16,7 @@ const avatarFunc = (bot,message,userName,cb) => {
 			}
 		}
 	} else {
-		cb(message.author.avatarURL)
+		cb(message.author.avatarURL.split("?")[0])
 	}
 }
 module.exports = {

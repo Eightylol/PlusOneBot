@@ -1,10 +1,29 @@
 module.exports = {
 	bot : {
-		name: "PlusOneBot",
-		playing:"PlusOne <3"
+		name: "+1 Bot",
+		playing:"Alpha",
+		musicChannel: "Music",
+		avatar: "botAvatar.png",
+		token: "[TOKEN]"
+	},
+	ui : {
+		colors: {
+			messages : {
+				info: "#5bc0de",
+				error: "#c9302c",
+				warning: "#f0ad4e"
+			}
+		}
 	},
 	steam: {
-		apikey: '729B074D90A891022A35C2C45D9CA03B' // INSERT API KEY HERE
+		apikey: '[APIKEY]' // INSERT API KEY HERE
+	},
+	google: {
+		apikey: "[APIKEY]",
+		cx: "007343989315666686152:zss4ryhcthw",
+		search: {
+			num_results: 3
+		}
 	},
 	commandSymbol: "!",
 	port:6543,
@@ -14,7 +33,9 @@ module.exports = {
 		"bot-testing"
 	],
 	validCommandArray : [
-		"test",
+		"clear",
+		"help",
+		"play",
 		"ping",
 	  "linkcheck",
 	  "shorten",
@@ -27,5 +48,10 @@ module.exports = {
 		"uptime",
 		"avatar",
 		"playing"
-	]
+	],
+	soundFx : {
+		// remember to use backslashes before and after \\FOLDERNAME\\SUBFOLDERNAME\\
+		folder: "\\assets\\soundFX\\"
+	}
+
 }
